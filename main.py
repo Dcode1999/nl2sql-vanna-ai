@@ -53,7 +53,7 @@ async def query_db(request_body: QueryRequest):
         if hasattr(chunk, "data") and chunk.data:
             result = chunk.data
 
-    # 🔥 Smart fallback
+    # Smart fallback
     if result is None:
 
         question = request_body.question.lower()
@@ -100,7 +100,7 @@ async def query_db(request_body: QueryRequest):
             except Exception as e:
                 result = f"SQL Error: {str(e)}"
 
-    # ✅ Clean result
+    # Clean result
     if isinstance(result, list) and len(result) == 1 and len(result[0]) == 1:
         result = result[0][0]
 
@@ -123,7 +123,7 @@ async def query_db(request_body: QueryRequest):
             for row in result
         ]
 
-    # ✅ Doctors list (INSIDE same block)
+    # Doctors list (INSIDE same block)
     elif sql_query and "FROM doctors" in sql_query:
         result = [
             {"name": row[0], "specialization": row[1]}

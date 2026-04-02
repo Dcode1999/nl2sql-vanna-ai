@@ -106,7 +106,7 @@ async def query_db(request_body: QueryRequest):
 
     elif isinstance(result, list) and len(result) > 0:
 
-        # 🔥 MOST SPECIFIC FIRST
+        # MOST SPECIFIC FIRST
         if sql_query and "total_appointments" in sql_query:
             result = {
                 "doctor": result[0][0],
